@@ -7,12 +7,13 @@ export const createPost = async (args, context) => {
     data: {
       title: args.title,
       content: args.content,
+      imageUrl: args.imageUrl,
       user: { connect: { id: context.user.id } }
     }
   })
 }
 
-export const editPost = async ({ id, title, content }, context) => {
+export const editPost = async ({ id, title, content, imageUrl }, context) => {
   if (!context.user) { throw new HttpError(401) };
 
   const post = await context.entities.Post.findUnique({
@@ -22,7 +23,7 @@ export const editPost = async ({ id, title, content }, context) => {
 
   return context.entities.Post.update({
     where: { id },
-    data: { title, content }
+    data: { title, content, imageUrl }
   });
 }
 

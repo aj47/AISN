@@ -6,12 +6,14 @@ import createPost from '@wasp/actions/createPost';
 export function NewPostPage() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [imageUrl, setImageUrl] = useState(''); // Added state for imageUrl
   const createPostFn = useAction(createPost);
 
   const handleCreatePost = () => {
-    createPostFn({ title, content });
+    createPostFn({ title, content, imageUrl }); // Added imageUrl to createPostFn
     setTitle('');
     setContent('');
+    setImageUrl(''); // Reset imageUrl state
   };
 
   return (
@@ -24,6 +26,13 @@ export function NewPostPage() {
           className='px-2 py-1 border rounded'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+        <input // Added input for imageUrl
+          type='text'
+          placeholder='Image URL'
+          className='px-2 py-1 border rounded'
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
         />
       </div>
       <div className='mb-4'>

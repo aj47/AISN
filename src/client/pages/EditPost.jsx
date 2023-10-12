@@ -11,12 +11,13 @@ export function EditPost() {
   const editPostFn = useAction(editPost);
   const [title, setTitle] = useState(post?.title || '');
   const [content, setContent] = useState(post?.content || '');
+  const [imageUrl, setImageUrl] = useState(post?.imageUrl || ''); // Added imageUrl state
 
   if (isLoading) return 'Loading...';
   if (error) return 'Error: ' + error;
 
   const handleEditPost = () => {
-    editPostFn({ id: postId, title, content });
+    editPostFn({ id: postId, title, content, imageUrl }); // Added imageUrl to editPostFn
   };
 
   return (
@@ -27,6 +28,13 @@ export function EditPost() {
         className='px-1 py-2 border rounded text-lg'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        type='text'
+        placeholder='Image URL' // Added placeholder for Image URL
+        className='px-1 py-2 border rounded text-lg'
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)}
       />
       <textarea
         placeholder='Content'

@@ -26,6 +26,7 @@ export function Home() {
           className='flex items-center justify-between bg-gray-100 p-4 mb-4 rounded-lg'
         >
           <div>{post.title}</div>
+          <img src={post.imageUrl} alt={post.title} />
           <div>{post.user.username}</div>
           <Link
             to={`/post/${post.id}`}

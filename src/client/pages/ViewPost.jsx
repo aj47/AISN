@@ -23,6 +23,7 @@ export function ViewPost() {
     <div className='p-4'>
       <h1 className='text-2xl font-bold mb-2'>{post.title}</h1>
       {/* <p className='text-gray-500 mb-4'>Author: {post.user.username}</p> */}
+      <img src={post.imageUrl} alt={post.title} />
       <p>{post.content}</p>
 
       <div className='mt-8'>
